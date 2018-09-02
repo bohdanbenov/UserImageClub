@@ -7,6 +7,32 @@
 
 <center><h1>All your images</h1></center>
 
-<% @all_urls.each do |x| %>
-  <%= image_tag(x.image_url, class: 'image', width: "300", height: "300") %>
-<% end %>
+<center>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Image id</th>
+        <th>Image</th>
+        <th>Add to favourites</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        <% @all_urls.each do |x| %>
+          <tr>
+            <td><%= x.id %></td>
+            <td><%= image_tag(x.image_url, class: 'image', width: "300", height: "300") %></td>
+            <td>Add to favourites</td>
+            <td><%= link_to 'Destroy',  "/users/"+x.user_id.to_s+"/images/"+x.id.to_s, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+</center>
+
+<%# @all_urls.each do |x| %>
+  <%#= image_tag(x.image_url, class: 'image', width: "300", height: "300") %>
+<%# end %>
+
+<!--"/users/"+x.user_id.to_s+"/images/"+x.id.to_s-->
