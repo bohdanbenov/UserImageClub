@@ -15,7 +15,7 @@
         <td><%= user.name %></td>
         <td><%= user.lastname %></td>
         <td><%= user.email %></td>
-        <td><%= link_to 'Show images'%></td>
+        <td><%= link_to 'Show images', user_images_path(user.id)%></td>
         <td><%= link_to 'Show favourites'%></td>
       </tr>
     <% end %>
