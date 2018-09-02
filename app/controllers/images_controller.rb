@@ -12,6 +12,8 @@ class ImagesController < ApplicationController
     @url = first_part + second_part
 
     @user.images.create(image_url: @url)
+    
+    @all_urls = Image.where(user_id: params[:user_id])
   end
 
   def get_response_with_redirect(uri)
