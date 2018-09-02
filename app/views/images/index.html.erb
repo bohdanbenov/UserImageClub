@@ -1,8 +1,12 @@
-<center><h1>All images</h1></center>
+<center><h1>Your random image</h1></center>
 <h3>Name: <%= @user.name%></h3>
 <h3>Lastname: <%= @user.lastname%></h3>
 <h3>Email: <%= @user.email%></h3>
 
-<center><h2>Your random image</h2></center>
 <center><img src=<%= @url%> alt="random_image"></center>
 
+<center><h1>All your images</h1></center>
+
+<% @all_urls.each do |x| %>
+  <%= image_tag(x.image_url, class: 'image', width: "300", height: "300") %>
+<% end %>
