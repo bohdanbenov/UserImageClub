@@ -1,0 +1,8 @@
+<center><h1>List of your favourites images</h1></center>
+<h3>Name: <%= @user.name%></h3>
+<h3>Lastname: <%= @user.lastname%></h3>
+<h3>Email: <%= @user.email%></h3>
+
+<% @all_urls.each do |x| %>
+    <%= image_tag(x.url, class: 'image', width: "300", height: "300") %>
+<% end %>

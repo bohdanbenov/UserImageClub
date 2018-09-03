@@ -23,7 +23,7 @@
           <tr>
             <td><%= x.id %></td>
             <td><%= image_tag(x.image_url, class: 'image', width: "300", height: "300") %></td>
-            <td>Add to favourites</td>
+            <td><%= link_to 'Add to favourites', user_image_path(user_id: x.user_id, id: x.id), method: :put %></td>
             <td><%= link_to 'Destroy',  user_image_path(user_id: x.user_id, id: x.id), method: :delete, data: {confirm: 'Are you sure?'} %></td>
           </tr>
         <% end %>

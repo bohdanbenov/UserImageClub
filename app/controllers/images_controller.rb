@@ -25,6 +25,12 @@ class ImagesController < ApplicationController
     part_url
   end
 
+  def update
+    @user = User.find(params[:user_id])
+    @img_record = Image.find(params[:id])
+    @user.favs.create(url: @img_record.image_url)
+  end
+
   def destroy
     @image = Image.find(params[:id])
     @image.destroy
