@@ -1,0 +1,10 @@
+%center
+  %h1 List of your favourites images
+%h3
+  Name: #{@user.name}
+%h3
+  Lastname: #{@user.lastname}
+%h3
+  Email: #{@user.email}
+- @all_urls.each do |x|
+  = image_tag(x.url, class: 'image', width: "300", height: "300")

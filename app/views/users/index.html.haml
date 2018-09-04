@@ -1,0 +1,18 @@
+%h1 List of all users
+%table{:border => "1"}
+  %thead
+    %tr
+      %th Name
+      %th Lastname
+      %th Email
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= user.lastname
+        %td= user.email
+        %td= link_to 'Show images', user_images_path(user.id)
+        %td= link_to 'Show favourites', user_favs_path(user.id)
+%h3
+  You can create new user by
+  %a{:href => "/users/new"} this link

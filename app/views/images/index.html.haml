@@ -1,0 +1,29 @@
+%center
+  %h1 Your random image
+%h3
+  Name: #{@user.name}
+%h3
+  Lastname: #{@user.lastname}
+%h3
+  Email: #{@user.email}
+%center
+  %img{:src => "<haml_loud"}/
+  @url alt="random_image"&gt;
+%center
+  %h1 All your images
+%center
+  %table{:border => "1"}
+    %thead
+      %tr
+        %th Image id
+        %th Image
+        %th Add to favourites
+        %th Delete
+    %tbody
+      - @all_urls.each do |x|
+        %tr
+          %td= x.id
+          %td= image_tag(x.image_url, class: 'image', width: "300", height: "300")
+          %td= link_to 'Add to favourites', user_image_path(user_id: x.user_id, id: x.id), method: :put
+          %td= link_to 'Destroy',  user_image_path(user_id: x.user_id, id: x.id), method: :delete, data: {confirm: 'Are you sure?'}
+/ "/users/"+x.user_id.to_s+"/images/"+x.id.to_s
