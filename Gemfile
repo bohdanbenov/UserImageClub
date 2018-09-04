@@ -21,6 +21,8 @@ gem "haml-rails", "~> 1.0"
 gem 'bootstrap', '~> 4.1.3'
 #jQuery
 gem 'jquery-rails'
+#Bootstrap form
+gem "bootstrap_form", ">= 4.0.0.alpha1"
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

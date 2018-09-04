@@ -1,3 +1,11 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href=<%= users_path%>>Main page</a></li>
+    <li class="breadcrumb-item"><a href=<%=user_images_path(@user.id)%>>User images</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Favourites images</li>
+  </ol>
+</nav>
+
 <center><h1>List of your favourites images</h1></center>
 <h3>Name: <%= @user.name%></h3>
 <h3>Lastname: <%= @user.lastname%></h3>
