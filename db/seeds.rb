@@ -11,7 +11,7 @@ require 'faker'
 30.times do |user|
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
-  e_mail = Faker::Internet.safe_email(last_name)
+  e_mail = Faker::Internet.safe_email(first_name+last_name)
   u_age = Faker::Number.between(1, 120)
   u_sex = Faker::Gender.binary_type
   u_bio = Faker::Lorem.paragraph_by_chars(295, false)
