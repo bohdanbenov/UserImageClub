@@ -1,31 +1,81 @@
 <center><h1>Creation of new user</h1></center>
 
-<%#= form_with scope: :user, url: users_path, local: true do |form| %>
-<!--  <p>-->
-<!--    <%#= form.label :name %><br>-->
-    <%#= form.text_field :name %>
-<!--  </p>-->
+<%= form_for(@user, html: {class: "form-horizontal center"}) do |form| %>
+  <div class="form-group row">
+    <%= form.label :first_name, class: "col-1 col-form-label" %>
+    <div class="col-5">
+      <%= form.text_field :first_name, class: "form-control" %>
+    </div>
+  </div>
 
-<!--  <p>-->
-<!--    <%#= form.label :lastname %><br>-->
-    <%#= form.text_area :lastname %>
-<!--  </p>-->
+  <div class="form-group row">
+    <%= form.label :last_name, class: "col-1 col-form-label" %>
+    <div class="col-5">
+      <%= form.text_field :last_name, class: "form-control" %>
+    </div>
+  </div>
 
-<!--  <p>-->
-<!--    <%#= form.label :email %><br>-->
-    <%#= form.text_area :email %>
-<!--  </p>-->
+  <div class="form-group row">
+    <%= form.label :email, class: "col-1 col-form-label" %>
+    <div class="col-5">
+      <%= form.text_field :email, class: "form-control" %>
+    </div>
+  </div>
 
-<!--  <p>-->
-    <%#= form.submit %>
-<!--  </p>-->
-<%# end %>
+  <div class="form-group row">
+    <%= form.label :age, class: "col-1 col-form-label" %>
+    <div class="col-5">
+      <%= form.text_field :age, class: "form-control" %>
+    </div>
+  </div>
 
-<%= bootstrap_form_for(@user, layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-4") do |f| %>
-  <center><%= f.text_field :name %></center>
-  <center><%= f.text_field :lastname %></center>
-  <center><%= f.email_field :email %></center>
-  <%= f.form_group do %>
-    <%= f.submit %>
-  <% end %>
+  <div class="form-group row">
+    <%= form.label :Sex, class: "col-1 col-form-label" %>
+    <div class="col-5">
+      <%= form.select :sex, options_for_select(%w(Male Female Other), 'Male'), class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :about, class: "col-1 col-form-label" %>
+    <div class="col-5">
+      <%= form.text_area :about, class: "form-control" %>
+    </div>
+  </div>
+
+    <%= form.fields_for :address, @user.address do |address_form| %>
+        <div class="form-group row">
+          <%= address_form.label :zip, class: "col-1 col-form-label"%>
+          <div class="col-5">
+            <%= address_form.text_field :zip, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= address_form.label :city, class: "col-1 col-form-label"%>
+          <div class="col-5">
+            <%= address_form.text_field :city, class: "form-control"%>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= address_form.label :street, class: "col-1 col-form-label"%>
+          <div class="col-5">
+            <%= address_form.text_field :street, class: "form-control"%>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= address_form.label :home_number, class: "col-1 col-form-label"%>
+          <div class="col-5">
+            <%= address_form.text_field :home_number, class: "form-control"%>
+          </div>
+        </div>
+    <% end %>
+
+  <center>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+  </center>
 <% end %>
