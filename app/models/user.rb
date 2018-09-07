@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  has_many :images
-  has_many :favs
-  has_one :address
+  has_many :images, dependent: :destroy
+  has_many :favs, dependent: :destroy
+  has_one :address, dependent: :destroy
   accepts_nested_attributes_for :address, update_only: true
 
   validates_associated :address
