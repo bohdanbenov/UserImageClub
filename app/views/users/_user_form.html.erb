@@ -1,0 +1,96 @@
+<%= form_for(user, html: {class: "form-horizontal center"}) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-horizontal center">
+    <div class="form-group row form-inline justify-content-center">
+      <%= form.label :first_name, class: "col-1 col-form-label", for:"example-text-input" %>
+      <div class="col-4">
+        <%= form.text_field :first_name, class: "form-control", id: "example-text-input" %>
+      </div>
+
+      <%= form.label :last_name, class: "col-1 col-form-label" %>
+      <div class="col-4">
+        <%= form.text_field :last_name, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-horizontal center">
+    <div class="form-group row form-inline justify-content-center">
+      <%= form.label :email, class: "col-1 col-form-label" %>
+      <div class="col-4">
+        <%= form.text_field :email, class: "form-control" %>
+      </div>
+
+      <%= form.label :age, class: "col-1 col-form-label" %>
+      <div class="col-4">
+        <%= form.text_field :age, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="form-horizontal center">
+    <div class="form-group row form-inline justify-content-center">
+      <%= form.label :Sex, class: "col-1 col-form-label" %>
+      <div class="col-4">
+        <%= form.select :sex, options_for_select(%w(Male Female Other), 'Male'), class: "form-control" %>
+      </div>
+
+      <%= form.label :about, class: "col-1 col-form-label" %>
+      <div class="col-4">
+        <%= form.text_area :about, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <%= form.fields_for :address, @user.address do |address_form| %>
+    <div class="form-horizontal center">
+      <div class="form-group row form-inline justify-content-center">
+        <%= address_form.label :zip, class: "col-1 col-form-label"%>
+        <div class="col-4">
+          <%= address_form.text_field :zip, class: "form-control" %>
+        </div>
+
+        <%= address_form.label :city, class: "col-1 col-form-label"%>
+        <div class="col-4">
+          <%= address_form.text_field :city, class: "form-control"%>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-horizontal center">
+      <div class="form-group row form-inline justify-content-center">
+        <%= address_form.label :street, class: "col-1 col-form-label"%>
+        <div class="col-3">
+          <%= address_form.text_field :street, class: "form-control"%>
+        </div>
+
+        <%= address_form.label :home_number, class: "col-2 col-form-label"%>
+        <div class="col-4">
+          <%= address_form.text_field :home_number, class: "form-control"%>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <hr>
+
+  <div class="form-horizontal center">
+    <div class="actions form-inline justify-content-center">
+      <%= form.submit %>
+    </div>
+  </div>
+<% end %>
