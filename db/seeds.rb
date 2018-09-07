@@ -22,10 +22,10 @@ require 'faker'
           age: u_age,
           sex: u_sex,
           about: u_bio,
-          address: Address.new(zip: Faker::Address.zip_code,
+          address: Address.new(zip: Faker::Number.between(10000, 99999),
                                city: Faker::Address.city,
                                street: Faker::Address.street_address,
-                               home_number: Faker::PhoneNumber.subscriber_number(9).to_i)
+                               home_number: Faker::Number.between(1, 4999))
   )
   puts "User was created #{user}"
 end
