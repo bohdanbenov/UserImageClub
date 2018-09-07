@@ -36,9 +36,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    Fav.find_by_user_id(@user.id).destroy
-    Image.find_by_user_id(@user.id).destroy_all
-    @user.address.destroy
     @user.destroy
     redirect_to users_path
   end
