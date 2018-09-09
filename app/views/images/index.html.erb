@@ -1,7 +1,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href=<%= users_path%>>Main page</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Images for <%= @user.name%> <%= @user.lastname%></li>
+    <li class="breadcrumb-item active" aria-current="page">Images for <%= @user.first_name%> <%= @user.last_name%></li>
   </ol>
 </nav>
 
@@ -12,10 +12,12 @@
         <tbody>
         <tr>
           <td>
-            <h5 class="text-white h4">Collapsed content</h5>
-            <h6 class="text-muted">Name: <%= @user.name%></h6>
-            <h6 class="text-muted">Lastname: <%= @user.lastname%></h6>
+            <h5 class="text-white h4">Personal information</h5>
+            <h6 class="text-muted">Name: <%= @user.first_name%></h6>
+            <h6 class="text-muted">Lastname: <%= @user.last_name%></h6>
             <h6 class="text-muted">Email: <%= @user.email%></h6>
+            <%= link_to 'Update profile', edit_user_path(id: @user.id), class: "btn btn-success" %>
+            <%= link_to 'Delete profile',  user_path(id: @user.id), method: :delete, class: "btn btn-danger",data: {confirm: 'Are you sure?'} %>
           </td>
           <td>
             <img src=<%= @url%> width="200" height="200" alt="random_image">
@@ -32,13 +34,11 @@
   </nav>
 </div>
 
-<center><h1>All your images</h1></center>
-
 <div class="row">
   <% @all_urls.each do |x| %>
     <div class="col-sm-3">
       <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src=<%= x.image_url %> alt="Card image cap">
+        <img class="card-img-top" src=<%= x.image_url %> alt="Card-image-cap">
         <div class="card-body">
           <table>
             <tbody>

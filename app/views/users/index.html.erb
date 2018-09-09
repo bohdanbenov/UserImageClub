@@ -2,7 +2,7 @@
   <div class="collapse" id="navbarToggleExternalContent">
     <div class="bg-dark p-4">
       <h5 class="text-white h4">User Image Club</h5>
-      <span class="text-muted">You can create new user by <a href="/users/new">this link</a></span>
+      <span class="text-muted">You can create new user by <a href="<%= new_user_path %>">this link</a></span>
     </div>
   </div>
   <nav class="navbar navbar-dark bg-dark">
@@ -19,17 +19,26 @@
       <th>Name</th>
       <th>Lastname</th>
       <th>Email</th>
+      <th>Age</th>
+      <th>Sex</th>
+      <th>City</th>
+      <th>Functionality</th>
     </tr>
   </thead>
 
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.name %></td>
-        <td><%= user.lastname %></td>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
         <td><%= user.email %></td>
-        <td><%= link_to 'Show images', user_images_path(user.id), class: "btn btn-outline-primary"%></td>
-        <td><%= link_to 'Show favourites', user_favs_path(user.id), class: "btn btn-outline-primary"%></td>
+        <td><%= user.age %></td>
+        <td><%= user.sex %></td>
+        <td><%= user.address.city %></td>
+        <td>
+          <%= link_to 'Show images', user_images_path(user.id), class: "btn btn-outline-primary"%>
+          <%= link_to 'Show favourites', user_favs_path(user.id), class: "btn btn-outline-primary"%>
+        </td>
       </tr>
     <% end %>
   </tbody>
