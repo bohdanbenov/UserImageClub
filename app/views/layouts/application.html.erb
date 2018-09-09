@@ -10,8 +10,21 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <nav class="navbar fixed-top navbar-dark bg-dark">
+      <% if current_user %>
+        <form class="form-inline float-right">
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-success" %>
+        </form>
+      <% else %>
+        <form class="form-inline float-right">
+          <%= link_to "Login", new_user_session_path, class: "btn btn-success" %>
+          <%= link_to "Registration", new_user_registration_path, method: :get, class: "btn btn-success" %>
+        </form>
+      <% end %>
+
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </nav>
     <%= yield %>
   </body>
 </html>
