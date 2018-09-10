@@ -25,6 +25,7 @@ require 'faker'
           about: u_bio,
           password: password,
           password_confirmation: password,
+          is_admin: false,
           address: Address.new(zip: Faker::Number.between(10000, 99999),
                                city: Faker::Address.city,
                                street: Faker::Address.street_address,

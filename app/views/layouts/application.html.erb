@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <nav class="navbar fixed-top navbar-dark bg-dark">
+    <nav class="navbar sticky-top navbar-dark bg-dark">
       <% if current_user %>
         <form class="form-inline float-right">
           <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-success" %>

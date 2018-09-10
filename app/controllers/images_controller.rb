@@ -3,9 +3,11 @@ require 'net/http'
 require 'uri'
 
 class ImagesController < ApplicationController
-  def index
-    @user = User.find(params[:user_id])
 
+  before_action :set_user, only: [:index, :update, :destroy]
+  before_action :check_access, only: [:index, :update, :destroy]
+
+  def index
     faker = Faker::LoremFlickr.image
     first_part = faker.slice"http://loremflickr.com"
     second_part = get_response_with_redirect(URI.parse(faker))
@@ -35,5 +37,21 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
     @image.destroy
     redirect_to user_images_path
+  end
+
+  private
+  def set_user
+    @user = User.find(params[:user_id])
+  end
+
+  def check_access
+    unless @user.id == current_user.id || current_user.is_admin?
+      redirect_to root_path, :alert => "Access denied."
+    end
+    puts 'a'
+
+    # unless @user == current_user
+    #   redirect_to root_path, :alert => "Access denied."
+    # end
   end
 end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :destroy]
-  before_action :check_access, only: [:new]
+  before_action :set_user, only: [:edit, :update, :destroy, :show]
+  before_action :check_access, only: [:edit, :update, :destroy, :show]
 
   def index
     @users = User.all
@@ -47,8 +47,7 @@ class UsersController < ApplicationController
     end
 
     def check_access
-      unless @user == current_user
-        # || current_user.has_roles?(:admin)
+      unless @user == current_user || current_user.is_admin?
         redirect_to root_path, :alert => "Access denied."
       end
     end
