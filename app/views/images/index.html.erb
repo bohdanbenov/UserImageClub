@@ -1,32 +1,35 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
+<nav aria-label="breadcrumb" class="fixed-bottom bg-dark">
+  <ol class="breadcrumb bg-dark">
     <li class="breadcrumb-item"><a href=<%= users_path%>>Main page</a></li>
     <li class="breadcrumb-item active" aria-current="page">Images for <%= @user.first_name%> <%= @user.last_name%></li>
   </ol>
 </nav>
 
-<div class="pos-f-t">
-  <div class="bg-dark p-4">
+<div class="pos-f-t bg-dark">
+<!--  <div class="bg-dark p-4">-->
     <div class="collapse" id="navbarToggleExternalContent">
-      <table>
-        <tbody>
-        <tr>
-          <td>
-            <h5 class="text-white h4">Personal information</h5>
-            <h6 class="text-muted">Name: <%= @user.first_name%></h6>
-            <h6 class="text-muted">Lastname: <%= @user.last_name%></h6>
-            <h6 class="text-muted">Email: <%= @user.email%></h6>
-            <%= link_to 'Update profile', edit_user_path(id: @user.id), class: "btn btn-success" %>
-            <%= link_to 'Delete profile',  user_path(id: @user.id), method: :delete, class: "btn btn-danger",data: {confirm: 'Are you sure?'} %>
-          </td>
-          <td>
-            <img src=<%= @url%> width="200" height="200" alt="random_image">
-          </td>
-        </tr>
-        </tbody>
-      </table>
+      <div class="pageCenter">
+        <table>
+          <tbody>
+          <tr>
+            <td>
+              <h5 class="text-white h4">Personal information</h5>
+              <h6 class="text-muted">Name: <%= @user.first_name%></h6>
+              <h6 class="text-muted">Lastname: <%= @user.last_name%></h6>
+              <h6 class="text-muted">Email: <%= @user.email%></h6>
+              <%= link_to 'View favourites', user_favs_path(@user.id), class: "btn btn-success" %>
+              <%= link_to 'Update profile', edit_user_path(id: @user.id), class: "btn btn-success" %>
+              <%= link_to 'Delete profile',  user_path(id: @user.id), method: :delete, class: "btn btn-danger",data: {confirm: 'Are you sure?'} %>
+            </td>
+            <td>
+              <img src=<%= @url%> width="200" height="200" alt="random_image">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
+<!--  </div>-->
   <nav class="navbar navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
