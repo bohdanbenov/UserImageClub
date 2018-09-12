@@ -1,120 +1,120 @@
-<br>
-<br>
-<br>
-<h2>Sign up</h2>
+<div class="bg">
+  <h2 class="text_center">Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |form| %>
-  <% if resource.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(resource.errors.count, "error") %> prohibited this user from being saved:</h2>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |form| %>
+    <% if resource.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(resource.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-        <% resource.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="form-horizontal center">
-    <div class="form-group row form-inline justify-content-center">
-      <%= form.label :first_name, class: "col-1 col-form-label", for:"example-text-input" %>
-      <div class="col-4">
-        <%= form.text_field :first_name, class: "form-control", id: "example-text-input" %>
+        <ul>
+          <% resource.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       </div>
-
-      <%= form.label :last_name, class: "col-1 col-form-label" %>
-      <div class="col-4">
-        <%= form.text_field :last_name, class: "form-control" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-horizontal center">
-    <div class="form-group row form-inline justify-content-center">
-      <%= form.label :email, class: "col-1 col-form-label" %>
-      <div class="col-4">
-        <%= form.text_field :email, class: "form-control" %>
-      </div>
-
-      <%= form.label :age, class: "col-1 col-form-label" %>
-      <div class="col-4">
-        <%= form.text_field :age, class: "form-control" %>
-      </div>
-    </div>
-  </div>
-
-  <hr>
-
-  <div class="form-horizontal center">
-    <div class="form-group row form-inline justify-content-center">
-      <%= form.label :Sex, class: "col-1 col-form-label" %>
-      <div class="col-4">
-        <%= form.select :sex, options_for_select(%w(Male Female Other), 'Male'), class: "form-control" %>
-      </div>
-
-      <%= form.label :about, class: "col-1 col-form-label" %>
-      <div class="col-4">
-        <%= form.text_area :about, class: "form-control" %>
-      </div>
-    </div>
-  </div>
-
-  <hr>
-
-  <%= form.fields_for :address do |address_form| %>
+    <% end %>
     <div class="form-horizontal center">
       <div class="form-group row form-inline justify-content-center">
-        <%= address_form.label :zip, class: "col-1 col-form-label"%>
+        <%= form.label :first_name, class: "col-1 col-form-label", for:"example-text-input" %>
         <div class="col-4">
-          <%= address_form.text_field :zip, class: "form-control" %>
+          <%= form.text_field :first_name, class: "form-control", id: "example-text-input" %>
         </div>
 
-        <%= address_form.label :city, class: "col-1 col-form-label"%>
+        <%= form.label :last_name, class: "col-1 col-form-label" %>
         <div class="col-4">
-          <%= address_form.text_field :city, class: "form-control"%>
+          <%= form.text_field :last_name, class: "form-control" %>
         </div>
       </div>
     </div>
 
     <div class="form-horizontal center">
       <div class="form-group row form-inline justify-content-center">
-        <%= address_form.label :street, class: "col-1 col-form-label"%>
+        <%= form.label :email, class: "col-1 col-form-label" %>
+        <div class="col-4">
+          <%= form.text_field :email, class: "form-control" %>
+        </div>
+
+        <%= form.label :age, class: "col-1 col-form-label" %>
+        <div class="col-4">
+          <%= form.text_field :age, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="form-horizontal center">
+      <div class="form-group row form-inline justify-content-center">
+        <%= form.label :Sex, class: "col-1 col-form-label" %>
+        <div class="col-4">
+          <%= form.select :sex, options_for_select(%w(Male Female Other), 'Male'), class: "form-control" %>
+        </div>
+
+        <%= form.label :about, class: "col-1 col-form-label" %>
+        <div class="col-4">
+          <%= form.text_area :about, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <%= form.fields_for :address do |address_form| %>
+      <div class="form-horizontal center">
+        <div class="form-group row form-inline justify-content-center">
+          <%= address_form.label :zip, class: "col-1 col-form-label"%>
+          <div class="col-4">
+            <%= address_form.text_field :zip, class: "form-control" %>
+          </div>
+
+          <%= address_form.label :city, class: "col-1 col-form-label"%>
+          <div class="col-4">
+            <%= address_form.text_field :city, class: "form-control"%>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-horizontal center">
+        <div class="form-group row form-inline justify-content-center">
+          <%= address_form.label :street, class: "col-1 col-form-label"%>
+          <div class="col-3">
+            <%= address_form.text_field :street, class: "form-control"%>
+          </div>
+
+          <%= address_form.label :home_number, class: "col-2 col-form-label"%>
+          <div class="col-4">
+            <%= address_form.text_field :home_number, class: "form-control"%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <hr>
+
+    <div class="form-horizontal center">
+      <div class="form-group row form-inline justify-content-center">
+        <%= form.label :password, class: "col-1 col-form-label" %>
+        <%# if @minimum_password_length %>
+  <!--          <em>(<%#= @minimum_password_length %> characters minimum)</em>-->
+        <%# end %>
         <div class="col-3">
-          <%= address_form.text_field :street, class: "form-control"%>
+          <%= form.password_field :password, autocomplete: "new-password", class: "form-control" %>
         </div>
 
-        <%= address_form.label :home_number, class: "col-2 col-form-label"%>
+        <%= form.label :password_confirmation, class: "col-2 col-form-label" %>
         <div class="col-4">
-          <%= address_form.text_field :home_number, class: "form-control"%>
+          <%= form.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
         </div>
+      </div>
+    </div>
+
+    <div class="form-horizontal center">
+      <div class="actions form-inline justify-content-center">
+        <%= form.submit %>
       </div>
     </div>
   <% end %>
 
-  <hr>
+  <%= render "devise/shared/links" %>
 
-  <div class="form-horizontal center">
-    <div class="form-group row form-inline justify-content-center">
-      <%= form.label :password, class: "col-1 col-form-label" %>
-      <%# if @minimum_password_length %>
-<!--          <em>(<%#= @minimum_password_length %> characters minimum)</em>-->
-      <%# end %>
-      <div class="col-3">
-        <%= form.password_field :password, autocomplete: "new-password", class: "form-control" %>
-      </div>
-
-      <%= form.label :password_confirmation, class: "col-2 col-form-label" %>
-      <div class="col-4">
-        <%= form.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-horizontal center">
-    <div class="actions form-inline justify-content-center">
-      <%= form.submit %>
-    </div>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
