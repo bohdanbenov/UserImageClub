@@ -6,11 +6,17 @@
   </ol>
 </nav>
 
-<center><h1>List of your favourites images</h1></center>
-<h3>Name: <%= @user.first_name%></h3>
-<h3>Lastname: <%= @user.last_name%></h3>
-<h3>Email: <%= @user.email%></h3>
+<h1 class="text_center">List of your favourites images</h1>
 
-<% @all_urls.each do |x| %>
-    <%= image_tag(x.url, class: 'image', width: "300", height: "300") %>
-<% end %>
+<div class="row">
+  <% @all_urls.each do |x| %>
+    <div class="col-sm-3">
+      <div class="card" style="width: 18rem;">
+        <%= image_tag(x.url, class: 'image', width: "auto", height: "auto") %>
+        <div class="card-body">
+          <h5 class="card-title text_center">Good picture for <%= @user.first_name %></h5>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
