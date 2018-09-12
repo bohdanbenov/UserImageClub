@@ -10,20 +10,26 @@
   </head>
 
   <body>
-    <nav class="navbar sticky-top navbar-dark bg-dark">
-      <% if current_user %>
-        <form class="form-inline float-right">
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-success" %>
-        </form>
-      <% else %>
-        <form class="form-inline float-right">
-          <%= link_to "Login", new_user_session_path, class: "btn btn-success" %>
-          <%= link_to "Registration", new_user_registration_path, method: :get, class: "btn btn-success" %>
-        </form>
-      <% end %>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-dark">
+      <a class="navbar-brand" href=<%= root_path %>>UserImageClub</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <% if current_user %>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-success" %>
+          <% else %>
+              <%= link_to "Login", new_user_session_path, class: "btn btn-success" %>
+              <%= link_to "Registration", new_user_registration_path, method: :get, class: "btn btn-success" %>
+          <% end %>
+        </form>
+<!--          <p class="notice"><%#= notice %></p>-->
+<!--          <p class="alert"><%#= alert %></p>-->
+      </div>
     </nav>
     <%= yield %>
   </body>
