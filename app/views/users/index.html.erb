@@ -29,7 +29,8 @@
     <% end %>
     </tbody>
   <% elsif current_user != nil && !current_user.is_admin? %>
-    <%= redirect_to user_images_path(current_user.id) %>
+    <%= controller.redirect_to user_images_path(current_user.id) %>
+<!--    <h1><%#= current_user.id %></h1>-->
   <% else %>
     <div class="row">
       <% @all_urls.each do |x| %>
