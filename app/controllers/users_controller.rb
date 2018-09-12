@@ -1,9 +1,34 @@
+require 'faker'
+require 'net/http'
+require 'uri'
+
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy, :show]
   before_action :check_access, only: [:edit, :update, :destroy, :show]
 
   def index
     @users = User.all
+    @user = current_user
+    @all_urls = []
+
+    if current_user == nil
+      12.times do |x|
+        faker = Faker::LoremFlickr.image
+        first_part = faker.slice"http://loremflickr.com"
+        second_part = get_response_with_redirect(URI.parse(faker))
+        url = first_part + second_part
+        @all_urls << url
+      end
+    end
+  end
+
+  def get_response_with_redirect(uri)
+    r = Net::HTTP.get_response(uri)
+    if r.code == "301"
+      r = Net::HTTP.get_response(URI.parse(r.header['location']))
+      part_url = r.header['location']
+    end
+    part_url
   end
 
   def new
