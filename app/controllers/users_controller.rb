@@ -20,6 +20,31 @@ class UsersController < ApplicationController
         @all_urls << url
       end
     end
+
+    if params.has_key?(:sort_by_names) && params.has_value?("1")
+      @users = User.all.order(first_name: :asc)
+    elsif params.has_key?(:sort_by_names) && params.has_value?("2")
+      @users = User.all.order(last_name: :asc)
+    end
+
+    @addr = Address.all.order(city: :asc).uniq.pluck(:city)
+
+    if params.has_key?(:sort_by_cities)
+      @users = @users.joins(:address).includes(:address).where("addresses.city = ?", params.values_at(:sort_by_cities)[0])
+    end
+
+    if params.has_key?(:Male)
+      @users = User.where("sex = :sex", {sex: "Male"})
+    elsif params.has_key?(:Female)
+      @users = User.where("sex = :sex", {sex: "Female"})
+    elsif params.has_key?(:Other)
+      @users = User.where("sex = :sex", {sex: "Other"})
+    end
+
+    if params.has_key?(:from) && params.has_key?(:to)
+      @users = User.where("age BETWEEN ? AND ?", params.values_at(:from)[0], params.values_at(:to)[0]).order(age: :asc)
+    end
+
   end
 
   def get_response_with_redirect(uri)
