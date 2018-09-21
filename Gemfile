@@ -41,6 +41,10 @@ gem 'jbuilder', '~> 2.5'
 #Use Faker to get random image
 gem 'faker', '~> 1.9', '>= 1.9.1'
 
+gem 'rspec-rails', :group => [:development, :test]
+gem 'factory_bot_rails', '~> 4.11', '>= 4.11.1'
+gem 'rails-controller-testing'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
