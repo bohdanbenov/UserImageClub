@@ -42,6 +42,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'faker', '~> 1.9', '>= 1.9.1'
 
 gem 'scout_apm'
+gem 'server_timing'
 gem 'dotenv-rails', :groups => [:development, :test]
 
 # Use ActiveStorage variant
