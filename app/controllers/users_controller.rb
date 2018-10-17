@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   before_action :check_access, only: [:edit, :update, :destroy, :show]
 
   def index
-    @users = User.all
+    @users = User.all.includes(:address)
     @user = current_user
     @all_urls = []
 
@@ -21,18 +21,6 @@ class UsersController < ApplicationController
       end
     end
 
-    if params.has_key?(:sort_by_names) && params.has_value?("1")
-      @users = User.all.order(first_name: :asc)
-    elsif params.has_key?(:sort_by_names) && params.has_value?("2")
-      @users = User.all.order(last_name: :asc)
-    end
-
-    @addr = Address.all.order(city: :asc).uniq.pluck(:city)
-
-    if params.has_key?(:sort_by_cities)
-      @users = @users.joins(:address).includes(:address).where("addresses.city = ?", params.values_at(:sort_by_cities)[0])
-    end
-
     if params.has_key?(:Male)
       @users = User.where("sex = :sex", {sex: "Male"})
     elsif params.has_key?(:Female)
@@ -44,6 +32,19 @@ class UsersController < ApplicationController
     if params.has_key?(:from) && params.has_key?(:to)
       @users = User.where("age BETWEEN ? AND ?", params.values_at(:from)[0], params.values_at(:to)[0]).order(age: :asc)
     end
+
+    if params.has_key?(:sort_by_names) && params.has_value?("1")
+      @users = @users.order(first_name: :asc)
+    elsif params.has_key?(:sort_by_names) && params.has_value?("2")
+      @users = @users.order(last_name: :asc)
+    end
+
+    @addr = Address.all.order(city: :asc).uniq.pluck(:city)
+
+    if params.has_key?(:sort_by_cities)
+      @users = @users.joins(:address).includes(:address).where("addresses.city = ?", params.values_at(:sort_by_cities)[0])
+    end
+
 
   end
 
