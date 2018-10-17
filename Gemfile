@@ -41,6 +41,9 @@ gem 'jbuilder', '~> 2.5'
 #Use Faker to get random image
 gem 'faker', '~> 1.9', '>= 1.9.1'
 
+gem 'scout_apm'
+gem 'dotenv-rails', :groups => [:development, :test]
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
