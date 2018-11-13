@@ -1,8 +1,60 @@
+require 'faker'
+require 'net/http'
+require 'uri'
+
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy, :show]
+  before_action :check_access, only: [:edit, :update, :destroy, :show]
 
   def index
-    @users = User.all
+    @users = User.all.includes(:address)
+    @user = current_user
+    @all_urls = []
+
+    if current_user == nil
+      12.times do |x|
+        faker = Faker::LoremFlickr.image
+        first_part = faker.slice"http://loremflickr.com"
+        second_part = get_response_with_redirect(URI.parse(faker))
+        url = first_part + second_part
+        @all_urls << url
+      end
+    end
+
+    if params.has_key?(:Male)
+      @users = User.where("sex = :sex", {sex: "Male"})
+    elsif params.has_key?(:Female)
+      @users = User.where("sex = :sex", {sex: "Female"})
+    elsif params.has_key?(:Other)
+      @users = User.where("sex = :sex", {sex: "Other"})
+    end
+
+    if params.has_key?(:from) && params.has_key?(:to)
+      @users = User.where("age BETWEEN ? AND ?", params.values_at(:from)[0], params.values_at(:to)[0]).order(age: :asc)
+    end
+
+    if params.has_key?(:sort_by_names) && params.has_value?("1")
+      @users = @users.order(first_name: :asc)
+    elsif params.has_key?(:sort_by_names) && params.has_value?("2")
+      @users = @users.order(last_name: :asc)
+    end
+
+    @addr = Address.all.order(city: :asc).uniq.pluck(:city)
+
+    if params.has_key?(:sort_by_cities)
+      @users = @users.joins(:address).includes(:address).where("addresses.city = ?", params.values_at(:sort_by_cities)[0])
+    end
+
+
+  end
+
+  def get_response_with_redirect(uri)
+    r = Net::HTTP.get_response(uri)
+    if r.code == "301"
+      r = Net::HTTP.get_response(URI.parse(r.header['location']))
+      part_url = r.header['location']
+    end
+    part_url
   end
 
   def new
@@ -43,6 +95,12 @@ class UsersController < ApplicationController
   private
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def check_access
+      unless @user == current_user || current_user.is_admin?
+        redirect_to root_path, :alert => "Access denied."
+      end
     end
 
     def user_credentials

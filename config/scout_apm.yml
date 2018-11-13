@@ -1,0 +1,8 @@
+common: &defaults
+  monitor: true
+
+production:
+  <<: *defaults
+
+development:
+  dev_trace: true

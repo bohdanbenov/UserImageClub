@@ -11,6 +11,8 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+# Use Devise for authentication
+gem 'devise', '~> 4.2'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -38,6 +40,10 @@ gem 'jbuilder', '~> 2.5'
 
 #Use Faker to get random image
 gem 'faker', '~> 1.9', '>= 1.9.1'
+
+gem 'scout_apm'
+gem 'server_timing'
+gem 'dotenv-rails', :groups => [:development, :test]
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

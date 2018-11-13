@@ -8,13 +8,14 @@
 
 require 'faker'
 
-30.times do |user|
+100.times do |user|
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
   e_mail = Faker::Internet.safe_email(first_name+last_name)
   u_age = Faker::Number.between(1, 120)
   u_sex = Faker::Gender.binary_type
   u_bio = Faker::Lorem.paragraph_by_chars(295, false)
+  password = Faker::Internet.password
   User.create!(
           first_name: first_name,
           last_name: last_name,
@@ -22,6 +23,9 @@ require 'faker'
           age: u_age,
           sex: u_sex,
           about: u_bio,
+          password: password,
+          password_confirmation: password,
+          is_admin: false,
           address: Address.new(zip: Faker::Number.between(10000, 99999),
                                city: Faker::Address.city,
                                street: Faker::Address.street_address,
